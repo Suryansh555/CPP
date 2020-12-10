@@ -1,47 +1,33 @@
-#include <bits/stdc++.h>
-using namespace std;
-
-bool palindrome(string ro){
-        int i = 0;
-        int j = ro.length() - 1;
-        while(i < j){
-            if(ro.at(i)!= ro.at(j)){
-                return false;
-
-            }
-                                i++;
-                    j--;
+class Solution {
+public:
+    //returns true if s is palindrom
+    bool isPalindrom(string &s){
+        int l=0,r=s.length()-1;
+        while(l<r){
+            if(s[l++]!=s[r--]) return false;
         }
         return true;
-}
-
-void palindromepartioning(string ques , string ans ,vector<string> a,vector<vector<string>> abc){
-      
-if(ques.length() == 0){
-    abc.push_back(a);
-    return;
-}
-for(int i = 1 ; i <= ques.length() ; i++){
-    string comp = ques.substr(0,i);
-    string roq = ques.substr(i);
-    
-    if(palindrome(comp)){
-        a.push_back(comp);
-        palindromepartioning(roq,ans + comp + " " ,a,abc);
     }
-}
-
-}
-
-int main(){
-    vector<vector<string>> abc ;
-    vector<string> a;
-    string ab ;
-    cin >> ab;
-palindromepartioning(ab,"",a,abc);
-
-
-
-
-    return 0 ;
-}
+    void recur(string s,int i,vector<string>& v,vector<vector<string>>& ans){
+        if(i==s.length() && v.size()>0){
+            ans.push_back(v);
+            return;
+        }
+        string str = "";
+        for(int j=i;j<s.length();++j){
+            str+=s[j];
+            if(isPalindrom(str)){
+                v.push_back(str);
+                recur(s,j+1,v,ans);
+                v.pop_back();     //backtrack
+            }
+        }
+    }
+    vector<vector<string>> partition(string s) {
+        if(s.length()==0) return {};
+        vector<vector<string>> ans;
+        vector<string> v;
+        recur(s,0,v,ans);
+        return ans;
+    }
+};
