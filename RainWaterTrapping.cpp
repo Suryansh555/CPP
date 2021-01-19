@@ -5,7 +5,6 @@ using namespace std;
 class Solution {
 public:
     int trap(vector<int>& height) {
-            // initialize output
     int result = 0;
     int n = height.size();
     // maximum element on left and right
