@@ -1,3 +1,5 @@
+#include<bits/stdc++.h>
+using namespace std;
 bool prime(int n){
     
     if (n <= 1)
@@ -13,7 +15,7 @@ bool prime(int n){
 }
 
 
-int Solution::solve(vector<int> &A) {
+int solve(vector<int> &A) {
     int siz = size(A);
     int count = 0 ;
     for(int i = 0 ; i < siz ; i++){
