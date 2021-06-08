@@ -31,7 +31,6 @@ int main()
     result= area(l,b);
     cout<<"the area is "<<result<<endl;
 
-
     cout<<"Enter the height and width of triangle"<<endl;
     cin>>h>>b;
     result=area(0.5,h,b);
